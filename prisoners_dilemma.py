@@ -363,50 +363,39 @@ def get_action(player, history, opponent_history, score, opponent_score, getting
 
 
 
-      ######
-#
-    #elif player == 8:
-    #    if getting_team_name:
-    #        return 'Achlec'
-    #    else:
-    #        combos = [['c','b','c','b'],['c','b','b','c'], ['c','b','c','c'], ['c','b','b','b'], ['b','c','c','b'], ['b','c','b','c'], ['b','c','c','c'], ['b','c','b','b'], ['c', 'c', 'c', 'b'], ['c', 'c', 'b', 'c'], ['c', 'c', 'c', 'c'], ['c', 'c', 'b', 'b'], ['b', 'b', 'c', 'b'], ['b', 'b', 'b', 'c'], ['b', 'b', 'c', 'c'], ['b', 'b', 'b', 'b']]
-    #        if len(opponent_history)==0:
-    #            return 'c'
-    #        else:
-    #            if len(opponent_history) >= 63:
-    #                scores = []
-    #                localScore = 0
-    #                cursor = 0
-    #                for x in range(0,len(opponent_history)):
-    #                    if opponent_history[x] == 'c':
-    #                        if history[x] == 'b':
-    #                            localScore += 100
-    #                    elif opponent_history[x] == 'b':
-    #                        if history[x] == 'b':
-    #                            localScore -= 250
-    #                        elif history[x] == 'c':
-    #                            localScore -= 500 
-    #                    cursor += 1
-    #                    if cursor == 4:
-    #                        cursor = 0
-    #                        scores.append(localScore)
-    #                        localScore = 0
-    #                localCombo = math.modf((len(opponent_history)/4))
-    #                return combos[scores.index(max(scores))][int(len(opponent_history)%4)]
-    #            localCombo = math.modf(float((len(opponent_history))/4))
-    #            print(str(localCombo[0]) + "," + str(localCombo[1]))
-    #            return combos[int(localCombo[1])][int(len(opponent_history)%4)]
-    #                
-    #                        
-    #    '''else:
-    #    # use history, opponent_history, score, opponent_score
-    #    # to compute your strategy
-    #    if len(opponent_history)==0: #It's the first round: collude
-    #    return 'b'
-    #    elif history[-1]=='b' and opponent_history[-1]=='b':
-    #    return 'b' # betray is they were sucker last time
-    #    else:
-    #    return 'c' #otherwise collude '''   
+         #####
+
+    elif player == 9:
+        if getting_team_name:
+            return 'Achlec'
+        else:
+            combos = [['b', 'b', 'b'],['c','b','c'], ['c','b','b'], ['b','c','c'], ['b','c','b'], ['c', 'c', 'b'], ['b', 'b', 'c'], ['c', 'c', 'c']]
+            if len(opponent_history)==0:
+                return 'b'
+            else:
+                if len(opponent_history) >= 20:
+                    scores = []
+                    localScore = 0
+                    cursor = 0
+                    for x in range(0,20):
+                        if opponent_history[x] == 'c':
+                            if history[x] == 'b':
+                                localScore += 100
+                        elif opponent_history[x] == 'b':
+                            if history[x] == 'b':
+                                localScore -= 250
+                            elif history[x] == 'c':
+                                localScore -= 500 
+                        cursor += 1
+                        if cursor == 4:
+                            cursor = 0
+                            scores.append(localScore)
+                            localScore = 0
+                    return combos[scores.index(max(scores))][int(len(opponent_history)%3)]
+                localCombo = math.modf(float((len(opponent_history))/3))
+                return combos[int(localCombo[1])][int(len(opponent_history)%3)]
+                    
+     
 
 
 
